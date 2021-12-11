@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: tomcat-deploy
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      labels: 
+        app: tomcat-cluster
+    spec:
+      containers:
+      - name: tomcat-cluster
+        image: tomcat:latest
+        ports: 
+        - containerPort: 8080
+        
