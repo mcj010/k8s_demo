@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: tomcat-deploy
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      labels: 
+        app: tomcat-cluster
+    spec:
+      volumes:
+      - name: web-app
+        hostPath: 
+          path: /mnt
+      containers:
+      - name: tomcat-cluster
+        image: tomcat:latest
+        ports: 
+        - containerPort: 8080
+        volumeMounts:
+        - name: web-app
+        # 用web-app /mnt 替代下面的path
+          mountPath: /usr/local/tomcat/webapps
+        
