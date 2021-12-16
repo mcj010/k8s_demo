@@ -16,6 +16,14 @@ spec:
       containers:
       - name: tomcat-cluster
         image: tomcat:latest
+        resources:
+          requests:
+            cpu: 0.5
+            memory: 200Mi
+          # 限制
+          limits:
+            cpu: 1
+            memory: 512Mi
         ports: 
         - containerPort: 8080
         volumeMounts:
